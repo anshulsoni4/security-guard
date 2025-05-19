@@ -15,6 +15,18 @@ const FooterSection = () => {
         <div className="mt-6 text-xs text-gray-400">
           Note: No actual security guards were harmed in the making of this meme site.
         </div>
+        
+        <div className="mt-4 pt-4 border-t border-gray-200">
+          <p className="text-sm font-medium">
+            Made by <a 
+              href="https://bento.me/anshul-soni" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-blue-500 hover:text-blue-600 transition-colors">
+                Anshul Soni
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
