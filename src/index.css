@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 221.2 83% 53.3%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -96,6 +90,56 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-poppins;
   }
+}
+
+.certificate-bg {
+  background-color: #fff;
+  background-image:
+    linear-gradient(90deg, rgba(200,200,200,.07) 50%, transparent 50%),
+    linear-gradient(90deg, rgba(200,200,200,.13) 50%, transparent 50%),
+    linear-gradient(90deg, transparent 50%, rgba(200,200,200,.17) 50%),
+    linear-gradient(90deg, transparent 50%, rgba(200,200,200,.19) 50%);
+  background-size: 13px, 29px, 37px, 53px;
+}
+
+.certificate-border {
+  border: 15px solid transparent;
+  border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cstyle%3Erect%7Banimation:stroke 5s infinite%7D@keyframes stroke%7Bto%7Bstroke-dashoffset:400%7D%7D%3C/style%3E%3Crect width='90' height='90' x='5' y='5' stroke='%23E53E3E' stroke-width='10' stroke-dasharray='140' stroke-dashoffset='0'/%3E%3C/svg%3E") 15;
+}
+
+.signature-line {
+  position: relative;
+}
+
+.signature-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+}
+
+.stamp {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 5px solid #E53E3E;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-15deg);
+  color: #E53E3E;
+  font-family: 'Bangers', cursive;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  opacity: 0.8;
+  z-index: 10;
 }
