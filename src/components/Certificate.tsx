@@ -29,11 +29,11 @@ const Certificate = ({ name, photo, tenthMarks, twelfthMarks, date = new Date().
       };
     } else if (tenthMarks >= 65 && twelfthMarks >= 65 && tenthMarks <= 75 && twelfthMarks <= 75) {
       return {
-        title: "Smart Security Guard Pvt. Ltd.",
-        message: "You are eligible for Smart Security Guard Pvt. Ltd. position!",
+        title: "DMart Security Guard",
+        message: "You are eligible for DMart Security Guard position!",
         icon: <ShieldAlert className="text-blue-600" size={24} />,
         color: "text-blue-600",
-        stamp: "SMART SECURITY APPROVED"
+        stamp: "DMART APPROVED"
       };
     } else if (tenthMarks >= 50 && twelfthMarks >= 50 && tenthMarks <= 65 && twelfthMarks <= 65) {
       return {
