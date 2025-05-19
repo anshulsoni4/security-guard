@@ -1,7 +1,7 @@
 
 import React, { useRef } from 'react';
 import { Button } from "@/components/ui/button";
-import { Award, Share, BadgeCheck } from "lucide-react";
+import { Award, Share, BadgeCheck, Building, ShieldAlert, X } from "lucide-react";
 import html2canvas from 'html2canvas';
 import { useToast } from "@/hooks/use-toast";
 
@@ -9,11 +9,52 @@ type CertificateProps = {
   name: string;
   photo: string | null;
   date?: string;
+  tenthMarks: number;
+  twelfthMarks: number;
 };
 
-const Certificate = ({ name, photo, date = new Date().toLocaleDateString() }: CertificateProps) => {
+const Certificate = ({ name, photo, tenthMarks, twelfthMarks, date = new Date().toLocaleDateString() }: CertificateProps) => {
   const certificateRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  // Determine eligibility status based on marks
+  const getEligibilityStatus = () => {
+    if (tenthMarks >= 80 && twelfthMarks >= 80) {
+      return {
+        title: "Vishal Mega Mart Security Guard",
+        message: "You are eligible for Vishal Mega Mart Security Guard post!",
+        icon: <Building className="text-green-600" size={24} />,
+        color: "text-green-600",
+        stamp: "VISHAL MEGA MART APPROVED"
+      };
+    } else if (tenthMarks >= 65 && twelfthMarks >= 65 && tenthMarks <= 75 && twelfthMarks <= 75) {
+      return {
+        title: "Smart Security Guard Pvt. Ltd.",
+        message: "You are eligible for Smart Security Guard Pvt. Ltd. position!",
+        icon: <ShieldAlert className="text-blue-600" size={24} />,
+        color: "text-blue-600",
+        stamp: "SMART SECURITY APPROVED"
+      };
+    } else if (tenthMarks >= 50 && twelfthMarks >= 50 && tenthMarks <= 65 && twelfthMarks <= 65) {
+      return {
+        title: "Girls Hostel Security Guard",
+        message: "You are eligible for Girls Hostel Security Guard position!",
+        icon: <BadgeCheck className="text-purple-600" size={24} />,
+        color: "text-purple-600",
+        stamp: "HOSTEL SECURITY APPROVED"
+      };
+    } else {
+      return {
+        title: "Not Eligible",
+        message: "Your marks need more security than you do! 😂",
+        icon: <X className="text-red-600" size={24} />,
+        color: "text-red-600",
+        stamp: "REJECTED 😂"
+      };
+    }
+  };
+
+  const eligibility = getEligibilityStatus();
 
   const downloadCertificate = async () => {
     if (!certificateRef.current) return;
@@ -45,10 +86,10 @@ const Certificate = ({ name, photo, date = new Date().toLocaleDateString() }: Ce
     }
   };
 
-  const shareCertificate = () => {
+  const shareCertificate = (platform: 'whatsapp' | 'instagram') => {
     toast({
-      title: "Share Feature",
-      description: "In a real app, this would open sharing options for WhatsApp and Instagram!",
+      title: `Share to ${platform === 'whatsapp' ? 'WhatsApp' : 'Instagram'}`,
+      description: `In a real app, this would open sharing options for ${platform === 'whatsapp' ? 'WhatsApp' : 'Instagram'}!`,
     });
   };
 
@@ -89,15 +130,31 @@ const Certificate = ({ name, photo, date = new Date().toLocaleDateString() }: Ce
               )}
               
               <div>
-                <p className="text-lg mb-3">has been found <span className="font-bold text-green-600">ELIGIBLE</span> to join as</p>
-                <div className="bg-brand-yellow bg-opacity-20 p-3 rounded-lg mb-3">
+                <p className="text-lg mb-3">
+                  {eligibility.title !== "Not Eligible" ? (
+                    <>has been found <span className="font-bold text-green-600">ELIGIBLE</span> to join as</>
+                  ) : (
+                    <>has been found <span className="font-bold text-red-600">NOT ELIGIBLE</span></>
+                  )}
+                </p>
+                <div className={`bg-opacity-20 p-3 rounded-lg mb-3 ${eligibility.title === "Not Eligible" ? "bg-red-100" : "bg-brand-yellow"}`}>
                   <p className="text-2xl font-bangers tracking-wide text-gray-800">
-                    Security Guard
+                    {eligibility.title}
                   </p>
-                  <p className="text-lg font-semibold">at Vishal Mega Mart, Dmart & More!</p>
+                  <p className={`text-lg font-semibold ${eligibility.color}`}>
+                    {eligibility.message}
+                  </p>
                 </div>
                 <div className="flex justify-center mt-2">
-                  <BadgeCheck className="text-green-600" size={24} />
+                  {eligibility.icon}
+                </div>
+                <div className="mt-4 text-sm">
+                  <div className="mb-2">
+                    <span className="font-bold">10th Marks:</span> {tenthMarks}%
+                  </div>
+                  <div>
+                    <span className="font-bold">12th Marks:</span> {twelfthMarks}%
+                  </div>
                 </div>
               </div>
             </div>
@@ -121,7 +178,7 @@ const Certificate = ({ name, photo, date = new Date().toLocaleDateString() }: Ce
 
         {/* Stamp */}
         <div className="stamp">
-          100% APPROVED<br />
+          {eligibility.stamp}<br />
           SECURITY GUARD<br />
           MATERIAL
         </div>
@@ -135,14 +192,26 @@ const Certificate = ({ name, photo, date = new Date().toLocaleDateString() }: Ce
         >
           Download Certificate
         </Button>
-        
+      </div>
+      
+      {/* Share Options */}
+      <div className="mt-4 flex flex-col sm:flex-row justify-center gap-3">
         <Button 
-          onClick={shareCertificate}
+          onClick={() => shareCertificate('whatsapp')}
           variant="outline"
-          className="border-brand-blue text-brand-blue hover:bg-brand-blue/10 flex-1"
+          className="border-green-600 text-green-600 hover:bg-green-600/10"
         >
           <Share className="mr-2" size={18} />
-          Share Certificate
+          Share on WhatsApp
+        </Button>
+        
+        <Button 
+          onClick={() => shareCertificate('instagram')}
+          variant="outline"
+          className="border-purple-600 text-purple-600 hover:bg-purple-600/10"
+        >
+          <Share className="mr-2" size={18} />
+          Share on Instagram
         </Button>
       </div>
       

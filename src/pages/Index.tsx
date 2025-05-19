@@ -44,17 +44,19 @@ const Index = () => {
           <div className="py-8">
             <div className="mb-8 text-center">
               <h2 className="text-3xl md:text-4xl font-bangers text-brand-red tracking-wider mb-2">
-                🎉 Congratulations! 🎉
+                🎉 Results Are In! 🎉
               </h2>
               <p className="text-gray-600 mb-8">
-                You passed our rigorous selection process!
+                Here's your eligibility certificate:
               </p>
             </div>
             
             {applicantData && (
               <Certificate 
                 name={applicantData.name} 
-                photo={applicantData.photo} 
+                photo={applicantData.photo}
+                tenthMarks={applicantData.tenthMarks}
+                twelfthMarks={applicantData.twelfthMarks}
               />
             )}
             
