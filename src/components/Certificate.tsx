@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Award, Share, BadgeCheck } from "lucide-react";
 import html2canvas from 'html2canvas';
-import { toast } from "@/components/ui/toast";
+import { useToast } from "@/hooks/use-toast";
 
 type CertificateProps = {
   name: string;
@@ -13,6 +13,7 @@ type CertificateProps = {
 
 const Certificate = ({ name, photo, date = new Date().toLocaleDateString() }: CertificateProps) => {
   const certificateRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   const downloadCertificate = async () => {
     if (!certificateRef.current) return;
