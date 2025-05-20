@@ -19,7 +19,7 @@ const Certificate = ({ name, photo, tenthMarks, twelfthMarks, date = new Date().
 
   // Determine eligibility status based on marks
   const getEligibilityStatus = () => {
-    if (tenthMarks >= 80 && twelfthMarks >= 80) {
+    if (tenthMarks > 75 && twelfthMarks > 75) {
       return {
         title: "Vishal Mega Mart Security Guard",
         message: "You are eligible for Vishal Mega Mart Security Guard post!",
@@ -27,7 +27,7 @@ const Certificate = ({ name, photo, tenthMarks, twelfthMarks, date = new Date().
         color: "text-green-600",
         stamp: "VISHAL MEGA MART APPROVED"
       };
-    } else if (tenthMarks >= 65 && twelfthMarks >= 65 && tenthMarks <= 75 && twelfthMarks <= 75) {
+    } else if (tenthMarks >= 70 && twelfthMarks >= 70 && tenthMarks <= 75 && twelfthMarks <= 75) {
       return {
         title: "DMart Security Guard",
         message: "You are eligible for DMart Security Guard position!",
@@ -35,7 +35,7 @@ const Certificate = ({ name, photo, tenthMarks, twelfthMarks, date = new Date().
         color: "text-blue-600",
         stamp: "DMART APPROVED"
       };
-    } else if (tenthMarks >= 50 && twelfthMarks >= 50 && tenthMarks <= 65 && twelfthMarks <= 65) {
+    } else if (tenthMarks >= 60 && twelfthMarks >= 60 && tenthMarks < 70 && twelfthMarks < 70) {
       return {
         title: "Girls Hostel Security Guard",
         message: "You are eligible for Girls Hostel Security Guard position!",
