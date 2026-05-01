@@ -33,7 +33,7 @@ const Certificate = ({ name, photo, tenthMarks, twelfthMarks, date = new Date().
         message: "You are eligible for DMart Security Guard position!",
         icon: <ShieldAlert className="text-blue-600" size={24} />,
         color: "text-blue-600",
-        stamp: "DMART APPROVED"
+        stamp: "You are Dmart Approved"
       };
     } else if (tenthMarks >= 60 && twelfthMarks >= 60 && tenthMarks < 70 && twelfthMarks < 70) {
       return {
