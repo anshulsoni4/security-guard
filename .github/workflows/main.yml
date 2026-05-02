@@ -1,0 +1,28 @@
+#build ka naam
+name: Build Check
+
+#trigger kab hoga pipeline jab main branch me changes aayenge
+on:
+  push:
+    branches:
+      - main
+
+#kispe run hora/hoga
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code #this will download the code to local system
+        uses: actions/checkout@v4
+
+      - name: Setup Node #this will install the node version
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies #this will install all dependecies
+        run: npm install
+
+      - name: Build Project #simply run the whole project
+        run: npm run build

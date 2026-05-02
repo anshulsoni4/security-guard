@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-#thgis is the tutorial
-=======
+
 version: '3.8'
 
->>>>>>> 7d7e146d9d256c9ab23ec8e2fa12abe96418be88
 services:
   frontend:
     build: .
