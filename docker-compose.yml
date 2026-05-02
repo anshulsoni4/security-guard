@@ -1,0 +1,7 @@
+#thgis is the tutorial
+services:
+  frontend:
+    build: .
+    container_name: security-guard-container
+    ports:
+      - "8080:8080"
